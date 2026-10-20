@@ -37,3 +37,22 @@ python -c "from main import demo; demo()"
 ```bash
 pytest -q
 ```
+
+## Architecture
+
+![Architecture](docs/architecture.png)
+
+<details>
+<summary>Mermaid source</summary>
+
+```mermaid
+flowchart LR
+    A[Webhook Listener] --> B[LLM Classification]
+    B --> C{Priority Check}
+    C -->|High| D[External API]
+    C -->|Standard| E[Local DB Log]
+    D --> F[Return Status]
+    E --> F
+```
+
+</details>
